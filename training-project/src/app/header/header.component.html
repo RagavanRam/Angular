@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-md navbar-light bg-warning">
+  <div class="container-fluid">
+    <span class="navbar-brand fw-bold">Recipe Book</span>
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="navbarContent"
+      [attr.aria-expanded]="!collapsed"
+      aria-label="Toggle navigation"
+      (click)="collapsed = !collapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="navbar-collapse"
+      [class.collapse]="collapsed"
+      id="navbarContent"
+    >
+      <ul class="navbar-nav me-auto">
+        <li>
+          <a
+            class="nav-link"
+            routerLink="recipes"
+            routerLinkActive="active"
+            *ngIf="isAuthenticated"
+            >Recipes</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="authentication"
+            routerLinkActive="active"
+            *ngIf="!isAuthenticated"
+            >Authentication</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLink="shopping-list"
+            routerLinkActive="active"
+            >Shopping List</a
+          >
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-link" *ngIf="isAuthenticated">
+          <a style="cursor: pointer" (click)="onLogOut()">Logout</a>
+        </li>
+        <li
+          class="nav-item"
+          ngbDropdown
+          display="dynamic"
+          placement="bottom-end"
+          *ngIf="isAuthenticated"
+        >
+          <a
+            class="nav-link"
+            tabindex="0"
+            ngbDropdownToggle
+            id="navbarDropdown3"
+            role="button"
+          >
+            Manage
+          </a>
+          <div
+            ngbDropdownMenu
+            aria-labelledby="navbarDropdown3"
+            class="dropdown-menu"
+          >
+            <a
+              ngbDropdownItem
+              (click)="$event.preventDefault()"
+              (click)="onSaveData()"
+              >Save Data</a
+            >
+            <a
+              ngbDropdownItem
+              (click)="$event.preventDefault()"
+              (click)="onFetchData()"
+              >Fetch Data</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,10 @@
+<div>
+  <button class="btn btn-success" (click)="addRecipe()">Add Ingredient</button>
+  <hr />
+  <app-recipe
+    *ngFor="let recipe of recipes; index as i"
+    [recipe]="recipe"
+    (click)="toDetail(i)"
+  ></app-recipe>
+  <hr />
+</div>

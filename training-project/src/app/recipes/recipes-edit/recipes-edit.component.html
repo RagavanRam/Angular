@@ -1,0 +1,66 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <label for="recipeName" class="form-label">Name</label>
+  <input
+    type="text"
+    class="form-control"
+    id="recipeName"
+    formControlName="name"
+  />
+  <label for="recipeImagePath" class="form-label">Image URL</label>
+  <input
+    type="text"
+    class="form-control"
+    id="recipeImagePath"
+    formControlName="imagePath"
+    #imageSrc
+  />
+  <img [src]="imageSrc.value" alt="" class="img-fluid mt-3 mb-3 rounded" />
+  <label for="recipeDescription">Description</label>
+  <textarea
+    formControlName="description"
+    id="recipeDescription"
+    rows="4"
+    class="form-control"
+  ></textarea>
+  <button class="btn btn-success mt-3" (click)="addIngredient()" type="button">
+    Add Ingredient
+  </button>
+  <hr />
+  <div formArrayName="ingredients">
+    <div *ngFor="let ingredient of controls; index as i" [formGroupName]="i">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          formControlName="name"
+        />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Amount"
+          formControlName="amount"
+        />
+        <button
+          class="btn btn-danger"
+          (click)="removeIngredient(i)"
+          type="button"
+        >
+          X
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 d-flex justify-content-end">
+    <button
+      class="btn btn-success me-2"
+      [disabled]="!recipeForm.valid"
+      type="submit"
+    >
+      {{ editMode ? "Update" : "Add" }}
+    </button>
+    <button class="btn btn-primary me-2" type="button" (click)="onCancel()">
+      Cancel
+    </button>
+  </div>
+</form>

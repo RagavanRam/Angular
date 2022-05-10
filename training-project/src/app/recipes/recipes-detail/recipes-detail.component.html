@@ -1,0 +1,43 @@
+<div>
+  <div class="card mb-3">
+    <img
+      [src]="recipe.imagePath"
+      class="card-img-top"
+      alt="{{ recipe.name }}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.name }}</h5>
+      <p class="card-text">
+        {{ recipe.description }}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Manage Recipe
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="toEdit()">Edit Recipe</button>
+          <button ngbDropdownItem (click)="onDeleteRecipe()">
+            Delete Recipe
+          </button>
+          <button ngbDropdownItem (click)="toShoppingList(recipe.ingredients)">
+            To Shopping List
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group mt-3">
+    <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+      {{ ingredient.name }} ({{ ingredient.amount }})
+    </li>
+  </ul>
+</div>

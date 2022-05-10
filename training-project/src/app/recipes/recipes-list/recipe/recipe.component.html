@@ -1,0 +1,15 @@
+<div class="list-group mb-3 recipe">
+  <li class="d-flex list-group-item">
+    <img
+      class="img-fluid d-flex align-self-center rounded"
+      [src]="recipe.imagePath"
+      alt="{{ recipe.name }}"
+    />
+    <div class="w-100">
+      <h4 class="text-center">{{ recipe.name }}</h4>
+      <p class="px-4">
+        {{ recipe.description | cutout: 50 }}
+      </p>
+    </div>
+  </li>
+</div>
